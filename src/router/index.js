@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import { ROUTER_PATH, ROUTE_NAME } from "@/const";
 import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
 
@@ -85,6 +86,27 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { top: 0 };
   },
+});
+const middlewarePipeline = (context, middleware, index) => {
+  const nextMiddleware = middleware[index];
+  if (!nextMiddleware) {
+    return context.next;
+  }
+  return () => {
+    const nextPipeline = middlewarePipeline(context, middleware, index + 1);
+    nextMiddleware({ ...context, next: nextPipeline });
+  };
+};
+router.beforeEach((to, from, next) => {
+  if (!to.meta.middleware) {
+    return next();
+  }
+  const { middleware } = to.meta;
+  const context = { to, from, next };
+  return middleware[0]({
+    ...context,
+    next: middlewarePipeline(context, middleware, 1),
+  });
 });
 
 export default router;

@@ -1,0 +1,23 @@
+{
+  "hello_world": "Hello world2323 !",
+  "common": {
+    "delete": "削除",
+    "add_new": "新規追加",
+    "return": "戻る",
+    "title": "タイトル",
+    "not_found_title": "Not found title",
+    "has_error": "Has Error !",
+    "unauthorized": "トークンの有効期限が切れました。",
+    "none": "なし",
+    "minutes": "分",
+    "can_be": "あり",
+    "stand": "台",
+    "keep": "保存",
+    "yes": "可",
+    "effectiveness": "有効",
+    "invalid": "無効",
+    "name_company": "株式会社あどばる (カブシキガイシャアドバル)",
+    "please_select_a_subcategory": "-- サブカテゴリーを選択してください --",
+    "no_data": "データなし"
+  }
+}
