@@ -1,7 +1,7 @@
 export const ROUTER_PATH = {
   //ROUTER_CUSTOMER
   HOME: "/",
-  LOGIN: "/customer/login",
+  LOGIN: "/login",
   REGISTERED: "/customer/registered",
   UPDATE_INFO: "/customer/registered/update-info",
   REGISTERED_SUCCESS: "/customer/registered-success",

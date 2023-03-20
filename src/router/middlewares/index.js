@@ -1,5 +1,5 @@
 import { getToken, removeToken } from "@/utils/authToken";
-import { ROUTER_PATH } from "@/const";
+// import { ROUTER_PATH } from "@/const";
 import useAuth from "@/store/auth";
 
 export function auth(context, type) {
@@ -12,5 +12,5 @@ export function auth(context, type) {
   }
   authState.isAuthenticated = false;
   removeToken();
-  next({ path: ROUTER_PATH.LOGIN, meta });
+  next({ path: "/login", meta });
 }

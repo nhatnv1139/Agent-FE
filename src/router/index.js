@@ -1,9 +1,20 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { ROUTER_PATH, ROUTE_NAME } from "@/const";
+import { TYPE_USER } from "@/const";
+import { auth } from "./middlewares";
 import Style from "@/views/StyleView.vue";
 import Home from "@/views/HomeView.vue";
+// import LayoutAuthenticated from "@/Layouts/LayoutAuthenticated.vue";
+import LayoutAuthenticated from "@/layouts/LayoutAuthenticated.vue";
 
 const routes = [
+  {
+    meta: {
+      middleware: [(context) => auth(context, TYPE_USER.ADMIN)],
+    },
+    path: "/",
+    name: "LayoutAuthenticated",
+    component: LayoutAuthenticated,
+  },
   {
     meta: {
       title: "Select style",
@@ -17,6 +28,7 @@ const routes = [
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
     meta: {
       title: "Dashboard",
+      middleware: [(context) => auth(context, TYPE_USER.ADMIN)],
     },
     path: "/dashboard",
     name: "dashboard",
@@ -25,6 +37,7 @@ const routes = [
   {
     meta: {
       title: "Tables",
+      middleware: [(context) => auth(context, TYPE_USER.ADMIN)],
     },
     path: "/tables",
     name: "tables",
@@ -33,6 +46,7 @@ const routes = [
   {
     meta: {
       title: "Forms",
+      middleware: [(context) => auth(context, TYPE_USER.ADMIN)],
     },
     path: "/forms",
     name: "forms",
@@ -41,6 +55,7 @@ const routes = [
   {
     meta: {
       title: "Profile",
+      middleware: [(context) => auth(context, TYPE_USER.ADMIN)],
     },
     path: "/profile",
     name: "profile",
@@ -49,6 +64,7 @@ const routes = [
   {
     meta: {
       title: "Ui",
+      middleware: [(context) => auth(context, TYPE_USER.ADMIN)],
     },
     path: "/ui",
     name: "ui",
@@ -57,6 +73,7 @@ const routes = [
   {
     meta: {
       title: "Responsive layout",
+      middleware: [(context) => auth(context, TYPE_USER.ADMIN)],
     },
     path: "/responsive",
     name: "responsive",
@@ -69,6 +86,10 @@ const routes = [
     path: "/login",
     name: "login",
     component: () => import("@/views/LoginView.vue"),
+    // beforeEnter: (to, from, next) => {
+    //   to.meta.loginTo = from.meta.loginTo;
+    //   next();
+    // },
   },
   {
     meta: {

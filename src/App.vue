@@ -4,4 +4,5 @@ import { RouterView } from "vue-router";
 
 <template>
   <RouterView />
+  <!-- <LoadingScreen v-if="isLoading" class="overlay" /> -->
 </template>

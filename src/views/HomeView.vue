@@ -25,6 +25,86 @@ import SectionTitleLineWithButton from "@/components/SectionTitleLineWithButton.
 import SectionBannerStarOnGitHub from "@/components/SectionBannerStarOnGitHub.vue";
 
 const chartData = ref(null);
+const withdrawals = {
+  "2023-03-15": [
+    {
+      txn_status_id: 1,
+      txn_status_name: "Success",
+      amount: 9,
+    },
+    {
+      txn_status_id: 1,
+      txn_status_name: "Fail",
+      amount: 1,
+    },
+    {
+      txn_status_id: 1,
+      txn_status_name: "Inprocess",
+      amount: 0,
+    },
+    {
+      txn_status_id: 1,
+      txn_status_name: "Pending",
+      amount: 0,
+    },
+  ],
+  "2023-03-14": [
+    {
+      txn_status_id: 2,
+      txn_status_name: "Success",
+      amount: 411,
+    },
+    {
+      txn_status_id: 2,
+      txn_status_name: "Fail",
+      amount: 2,
+    },
+    {
+      txn_status_id: 2,
+      txn_status_name: "Inprocess",
+      amount: 0,
+    },
+    {
+      txn_status_id: 2,
+      txn_status_name: "Pending",
+      amount: 0,
+    },
+  ],
+};
+let data = {
+  labels: [],
+  success: [],
+  fail: [],
+  inprocess: [],
+  pending: [],
+};
+
+Object.keys(withdrawals).forEach((date) => {
+  let sum_success = 0;
+  let sum_fail = 0;
+  let sum_inprocess = 0;
+  let sum_pending = 0;
+
+  withdrawals[date].forEach((txn) => {
+    if (txn.txn_status_name === "Success") {
+      sum_success += txn.amount;
+    } else if (txn.txn_status_name === "Fail") {
+      sum_fail += txn.amount;
+    } else if (txn.txn_status_name === "Inprocess") {
+      sum_inprocess += txn.amount;
+    } else if (txn.txn_status_name === "Pending") {
+      sum_pending += txn.amount;
+    }
+  });
+
+  data.labels.push(date);
+  data.success.push(sum_success);
+  data.fail.push(sum_fail);
+  data.inprocess.push(sum_inprocess);
+  data.pending.push(sum_pending);
+});
+
+console.log(123, data);
 
 const fillChartData = () => {
   chartData.value = chartConfig.sampleChartData();

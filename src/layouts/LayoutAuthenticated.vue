@@ -1,15 +1,15 @@
 <script setup>
-import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
+// import { mdiForwardburger, mdiBackburger, mdiMenu } from "@mdi/js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import menuAside from "@/menuAside.js";
 import menuNavBar from "@/menuNavBar.js";
 import { useMainStore } from "@/stores/main.js";
 import { useStyleStore } from "@/stores/style.js";
-import BaseIcon from "@/components/BaseIcon.vue";
-import FormControl from "@/components/FormControl.vue";
+// import BaseIcon from "@/components/BaseIcon.vue";
+// import FormControl from "@/components/FormControl.vue";
 import NavBar from "@/components/NavBar.vue";
-import NavBarItemPlain from "@/components/NavBarItemPlain.vue";
+// import NavBarItemPlain from "@/components/NavBarItemPlain.vue";
 import AsideMenu from "@/components/AsideMenu.vue";
 import FooterBar from "@/components/FooterBar.vue";
 
@@ -64,7 +64,7 @@ const menuClick = (event, item) => {
         ]"
         @menu-click="menuClick"
       >
-        <NavBarItemPlain
+        <!-- <NavBarItemPlain
           display="flex lg:hidden"
           @click.prevent="isAsideMobileExpanded = !isAsideMobileExpanded"
         >
@@ -86,7 +86,7 @@ const menuClick = (event, item) => {
             transparent
             borderless
           />
-        </NavBarItemPlain>
+        </NavBarItemPlain> -->
       </NavBar>
       <AsideMenu
         :is-aside-mobile-expanded="isAsideMobileExpanded"
@@ -97,13 +97,13 @@ const menuClick = (event, item) => {
       />
       <slot />
       <FooterBar>
-        Get more with
+        <!-- Get more with
         <a
           href="https://tailwind-vue.justboil.me/"
           target="_blank"
           class="text-blue-600"
           >Premium version</a
-        >
+        > -->
       </FooterBar>
     </div>
   </div>
