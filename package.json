@@ -12,10 +12,13 @@
     "@rushstack/eslint-patch": "^1.1.4",
     "axios": "^0.27.0",
     "chart.js": "^3.6.0",
+    "lodash": "^4.17.21",
     "numeral": "^2.0.6",
     "pinia": "^2.0.13",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0"
+    "vue-i18n": "^9.2.2",
+    "vue-router": "^4.0.0",
+    "vue-toast-notification": "^3.1.1"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",

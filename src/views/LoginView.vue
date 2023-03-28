@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, inject } from "vue";
 import { useRouter } from "vue-router";
 import { mdiAccount, mdiAsterisk } from "@mdi/js";
 import SectionFullScreen from "@/components/SectionFullScreen.vue";
@@ -10,6 +10,9 @@ import FormControl from "@/components/FormControl.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import LayoutGuest from "@/layouts/LayoutGuest.vue";
+import { TYPE_USER } from "@/const";
+import { setToken } from "@/utils/authToken";
+import { loginCustomer } from "@/api";
 
 const form = reactive({
   login: "john.doe",
@@ -18,9 +21,26 @@ const form = reactive({
 });
 
 const router = useRouter();
+const toast = inject("$toast");
+// const dataRef ="123123"
 
-const submit = () => {
-  router.push("/dashboard");
+const submit = async () => {
+  try {
+    // store.state[MODULE_STORE.COMMON.NAME].isLoadingPage = true;
+    const response = await loginCustomer({
+      email: form.login,
+      password: form.pass,
+    });
+
+    const { access_token, expires_in } = response;
+    setToken(access_token, expires_in, TYPE_USER.ADMIN);
+    router.push("/dashboard");
+  } catch (errors) {
+    // const error = errors.message || t("common.has_error");
+    toast.error("has errors");
+  } finally {
+    // store.state[MODULE_STORE.COMMON.NAME].isLoadingPage = false;
+  }
 };
 </script>
 
